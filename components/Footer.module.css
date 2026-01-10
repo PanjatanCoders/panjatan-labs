@@ -1,0 +1,45 @@
+.footer {
+  background: var(--bg-light);
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.content {
+  text-align: center;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.links a {
+  color: var(--text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: var(--primary);
+}
+
+.copyright {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
