@@ -64,49 +64,64 @@ export default function Philosophy() {
           Principles that guide every product we build
         </Typography>
 
-        <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              md: 'repeat(3, 1fr)',
+            },
+            gap: 2.5,
+            mb: 4,
+          }}
+        >
           {principles.map((principle, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <Paper
-                elevation={0}
+            <Paper
+              key={index}
+              elevation={0}
+              sx={{
+                p: 0,
+                borderRadius: 2.5,
+                overflow: 'hidden',
+                background: 'white',
+                border: '1px solid',
+                borderColor: 'divider',
+                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+                display: 'flex',
+                flexDirection: 'column',
+                '&:hover': {
+                  transform: 'translateY(-6px)',
+                  boxShadow: `0 8px 20px ${principle.color}25`,
+                  borderColor: principle.color,
+                  '& .principle-header': {
+                    background: `linear-gradient(135deg, ${principle.color}20 0%, ${principle.color}10 100%)`,
+                  },
+                  '& .principle-icon': {
+                    transform: 'scale(1.1)',
+                    boxShadow: `0 6px 16px ${principle.color}30`,
+                  },
+                },
+              }}
+            >
+              <Box
+                className="principle-header"
                 sx={{
-                  p: 3,
-                  height: '100%',
-                  border: '2px solid',
-                  borderColor: 'divider',
-                  borderRadius: 3,
-                  transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  '&:hover': {
-                    borderColor: principle.color,
-                    transform: 'translateY(-10px) scale(1.03)',
-                    boxShadow: `0 16px 40px ${principle.color}30`,
-                    '& .principle-icon': {
-                      transform: 'scale(1.2) rotate(8deg)',
-                    },
-                  },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '4px',
-                    background: principle.color,
-                  },
+                  background: `linear-gradient(135deg, ${principle.color}12 0%, ${principle.color}06 100%)`,
+                  p: 2.5,
+                  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               >
                 <Box
                   className="principle-icon"
                   sx={{
                     display: 'inline-flex',
-                    p: 2,
-                    borderRadius: 2,
-                    backgroundColor: `${principle.color}15`,
+                    p: 1.2,
+                    borderRadius: 1.5,
+                    backgroundColor: 'white',
                     color: principle.color,
-                    mb: 3,
-                    transition: 'all 0.3s',
+                    mb: 1.5,
+                    boxShadow: `0 3px 10px ${principle.color}15`,
+                    transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                   }}
                 >
                   {principle.icon}
@@ -115,25 +130,29 @@ export default function Philosophy() {
                   variant="h6"
                   sx={{
                     fontWeight: 700,
-                    mb: 2,
                     color: 'text.primary',
+                    fontSize: '1.05rem',
+                    lineHeight: 1.3,
                   }}
                 >
                   {principle.title}
                 </Typography>
+              </Box>
+              <Box sx={{ p: 2.5, pt: 2, flexGrow: 1 }}>
                 <Typography
                   variant="body2"
                   sx={{
                     color: 'text.secondary',
-                    lineHeight: 1.8,
+                    lineHeight: 1.6,
+                    fontSize: '0.875rem',
                   }}
                 >
                   {principle.description}
                 </Typography>
-              </Paper>
-            </Grid>
+              </Box>
+            </Paper>
           ))}
-        </Grid>
+        </Box>
 
         {/* Closing Statement */}
         <Paper
