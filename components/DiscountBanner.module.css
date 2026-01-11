@@ -1,0 +1,144 @@
+.banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 250px;
+}
+
+.icon {
+  font-size: 2rem !important;
+  color: #ffd700;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.title {
+  font-weight: 700 !important;
+  margin: 0 !important;
+  font-size: 1rem !important;
+}
+
+.subtitle {
+  opacity: 0.9;
+  margin: 0 !important;
+  font-size: 0.85rem !important;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.timeUnit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 38px;
+}
+
+.timeValue {
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  font-size: 1.4rem !important;
+  color: #ffd700;
+}
+
+.timeLabel {
+  font-size: 0.6rem !important;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-top: 0.15rem !important;
+}
+
+.separator {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  opacity: 0.6;
+  margin: 0 0.15rem;
+}
+
+.closeBtn {
+  color: white !important;
+  opacity: 0.7;
+  transition: opacity 0.2s !important;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .left {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .timer {
+    padding: 0.5rem 1rem;
+  }
+
+  .timeValue {
+    font-size: 1.5rem !important;
+  }
+
+  .timeUnit {
+    min-width: 35px;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
