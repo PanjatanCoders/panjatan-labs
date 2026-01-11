@@ -25,7 +25,7 @@ export const products = [
     status: 'coming-soon',
     link: null,
     linkText: 'Coming Soon',
-    originalPrice: 99,
+    originalPrice: 19999,
     discountPrice: null,
     discount: null,
     features: [
@@ -43,7 +43,7 @@ export const products = [
     status: 'coming-soon',
     link: null,
     linkText: 'Coming Soon',
-    originalPrice: 79,
+    originalPrice: 9999,
     discountPrice: null,
     discount: null,
     features: [

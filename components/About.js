@@ -1,5 +1,5 @@
 'use client'
-import { Box, Container, Typography, Paper, Grid } from '@mui/material'
+import { Box, Container, Typography, Paper } from '@mui/material'
 import { Code, Speed, Lightbulb, CheckCircle } from '@mui/icons-material'
 
 export default function About() {
@@ -14,7 +14,7 @@ export default function About() {
       component="section"
       id="about"
       sx={{
-        py: { xs: 4, md: 6 },
+        py: { xs: 3, md: 4 },
         backgroundColor: 'background.paper',
       }}
     >
@@ -24,7 +24,7 @@ export default function About() {
           sx={{
             textAlign: 'center',
             fontWeight: 800,
-            mb: 1.5,
+            mb: 1,
             fontSize: { xs: '2rem', md: '2.5rem' },
           }}
         >
@@ -36,62 +36,83 @@ export default function About() {
           sx={{
             textAlign: 'center',
             color: 'text.secondary',
-            mb: 4,
+            mb: 3,
             maxWidth: 700,
             mx: 'auto',
+            fontSize: { xs: '0.95rem', md: '1.05rem' },
           }}
         >
           Real experience. Real solutions. Real impact.
         </Typography>
 
         {/* Stats */}
-        <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr',
+              sm: 'repeat(3, 1fr)',
+            },
+            gap: 2,
+            mb: 3,
+          }}
+        >
           {stats.map((stat, index) => (
-            <Grid item xs={12} sm={4} key={index}>
-              <Paper
-                elevation={0}
-                sx={{
-                  p: 2.5,
-                  textAlign: 'center',
-                  border: '1px solid',
-                  borderColor: 'divider',
-                  transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  '&:hover': {
-                    borderColor: 'primary.main',
-                    boxShadow: '0 12px 32px rgba(8, 145, 178, 0.2)',
-                    transform: 'translateY(-6px) scale(1.03)',
+            <Paper
+              key={index}
+              elevation={0}
+              sx={{
+                p: 2,
+                textAlign: 'center',
+                border: '1px solid',
+                borderColor: 'divider',
+                transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+                '&:hover': {
+                  borderColor: 'primary.main',
+                  boxShadow: '0 8px 24px rgba(8, 145, 178, 0.2)',
+                  transform: 'translateY(-4px)',
+                  '& .stat-icon': {
+                    transform: 'scale(1.1)',
+                    backgroundColor: 'secondary.main',
                   },
+                },
+              }}
+            >
+              <Box
+                className="stat-icon"
+                sx={{
+                  display: 'inline-flex',
+                  p: 1.5,
+                  borderRadius: 2,
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                  mb: 1.5,
+                  transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               >
-                <Box
-                  sx={{
-                    display: 'inline-flex',
-                    p: 2,
-                    borderRadius: 2,
-                    backgroundColor: 'primary.main',
-                    color: 'white',
-                    mb: 2,
-                  }}
-                >
-                  {stat.icon}
-                </Box>
-                <Typography
-                  variant="h3"
-                  sx={{
-                    fontWeight: 800,
-                    color: 'primary.main',
-                    mb: 1,
-                  }}
-                >
-                  {stat.value}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {stat.label}
-                </Typography>
-              </Paper>
-            </Grid>
+                {stat.icon}
+              </Box>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: 800,
+                  color: 'primary.main',
+                  mb: 0.5,
+                  fontSize: { xs: '2rem', md: '2.5rem' },
+                }}
+              >
+                {stat.value}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ fontSize: '0.85rem' }}
+              >
+                {stat.label}
+              </Typography>
+            </Paper>
           ))}
-        </Grid>
+        </Box>
 
         {/* Content */}
         <Box sx={{ maxWidth: 800, mx: 'auto' }}>
@@ -99,9 +120,10 @@ export default function About() {
             variant="body1"
             sx={{
               color: 'text.secondary',
-              mb: 2,
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
+              mb: 1.5,
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              textAlign: 'center',
             }}
           >
             With years of real-world QA experience, I've worked across manual testing, automation frameworks, and test management systems. I've seen teams struggle with bloated tools, unclear processes, and documentation that doesn't match reality.
@@ -111,9 +133,10 @@ export default function About() {
             variant="body1"
             sx={{
               color: 'text.secondary',
-              mb: 3,
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
+              mb: 2,
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              textAlign: 'center',
             }}
           >
             Panjatan Labs was created to address these pain points. Every tool I build comes from direct experience — from managing test cycles under tight deadlines to debugging flaky automation reports at 2 AM.
@@ -122,14 +145,15 @@ export default function About() {
           <Paper
             elevation={0}
             sx={{
-              p: 3,
+              p: 2.5,
               background: 'linear-gradient(135deg, #0891b2 0%, #8b5cf6 100%)',
               color: 'white',
               borderRadius: 3,
               textAlign: 'center',
-              mb: 3,
+              mb: 2,
               position: 'relative',
               overflow: 'hidden',
+              transition: 'all 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -139,15 +163,31 @@ export default function About() {
                 bottom: 0,
                 background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)',
               },
+              '&:hover': {
+                transform: 'scale(1.02)',
+                boxShadow: '0 12px 32px rgba(8, 145, 178, 0.3)',
+                '& .callout-icon': {
+                  transform: 'rotate(360deg) scale(1.1)',
+                },
+              },
             }}
           >
-            <CheckCircle sx={{ fontSize: 48, mb: 2, opacity: 0.9 }} />
+            <CheckCircle
+              className="callout-icon"
+              sx={{
+                fontSize: 40,
+                mb: 1.5,
+                opacity: 0.9,
+                transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+            />
             <Typography
-              variant="h5"
+              variant="h6"
               sx={{
                 fontWeight: 700,
                 position: 'relative',
                 zIndex: 1,
+                fontSize: { xs: '1rem', md: '1.15rem' },
               }}
             >
               If it doesn't help in real projects, it doesn't ship.
@@ -158,8 +198,9 @@ export default function About() {
             variant="body1"
             sx={{
               color: 'text.secondary',
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
+              fontSize: '0.95rem',
+              lineHeight: 1.6,
+              textAlign: 'center',
             }}
           >
             This isn't about building the most feature-rich platform. It's about creating tools that solve actual problems, work reliably, and help QA teams deliver with confidence.
