@@ -4,10 +4,15 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Products from '@/components/Products'
 import Philosophy from '@/components/Philosophy'
+import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SmoothScroll from '@/components/SmoothScroll'
+import WhatsAppFloat from '@/components/WhatsAppFloat'
 
 export default function Home() {
+  // Calculate date 30 days from now (static for SSR consistency)
+  const expiryDate = new Date('2026-02-10').toISOString().split('T')[0]
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -19,6 +24,20 @@ export default function Home() {
         logo: {
           '@type': 'ImageObject',
           url: 'https://panjatanlabs.com/logo.png',
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+91-70304-00093',
+          contactType: 'Customer Service',
+          email: 'panjatan.tech@gmail.com',
+          areaServed: 'IN',
+          availableLanguage: ['English', 'Hindi'],
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Pune',
+          addressRegion: 'Maharashtra',
+          addressCountry: 'IN',
         },
         sameAs: [
           // Add your social media URLs when available
@@ -60,7 +79,7 @@ export default function Home() {
           url: 'https://panjatantech.gumroad.com/l/qa-toolkit',
           priceCurrency: 'INR',
           price: '299',
-          priceValidUntil: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+          priceValidUntil: expiryDate,
           availability: 'https://schema.org/InStock',
           itemCondition: 'https://schema.org/NewCondition',
         },
@@ -109,8 +128,10 @@ export default function Home() {
         <About />
         <Products />
         <Philosophy />
+        <Contact />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   )
 }

@@ -5,13 +5,16 @@ import { LocalOffer, Close } from '@mui/icons-material'
 import styles from './DiscountBanner.module.css'
 
 export default function DiscountBanner() {
-  const [timeLeft, setTimeLeft] = useState(null)
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [isVisible, setIsVisible] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   // Set discount end date (30 days from now - you can adjust this to your specific date)
   const discountEndDate = new Date('2026-02-10T23:59:59')
 
   useEffect(() => {
+    setMounted(true)
+
     const calculateTimeLeft = () => {
       const now = new Date()
       const difference = discountEndDate - now
@@ -23,8 +26,6 @@ export default function DiscountBanner() {
         const seconds = Math.floor((difference / 1000) % 60)
 
         setTimeLeft({ days, hours, minutes, seconds })
-      } else {
-        setTimeLeft(null)
       }
     }
 
@@ -34,7 +35,7 @@ export default function DiscountBanner() {
     return () => clearInterval(timer)
   }, [])
 
-  if (!isVisible || !timeLeft) return null
+  if (!isVisible || !mounted) return null
 
   return (
     <Box className={styles.banner}>

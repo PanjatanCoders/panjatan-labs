@@ -35,6 +35,7 @@ export default function Navbar() {
     { label: 'Products', href: '#products' },
     { label: 'About', href: '#about' },
     { label: 'Philosophy', href: '#philosophy' },
+    { label: 'Contact', href: '#contact' },
   ]
 
   const drawer = (
