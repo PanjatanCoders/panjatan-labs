@@ -48,6 +48,7 @@ export default function Hero() {
 
           <Typography
             variant="h1"
+            component="h1"
             className={styles.title}
             sx={{
               fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
@@ -64,7 +65,8 @@ export default function Hero() {
           </Typography>
 
           <Typography
-            variant="h5"
+            variant="h2"
+            component="h2"
             className={styles.tagline}
             sx={{
               color: 'text.primary',

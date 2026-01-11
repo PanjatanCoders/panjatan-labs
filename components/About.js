@@ -21,6 +21,7 @@ export default function About() {
       <Container maxWidth="lg">
         <Typography
           variant="h2"
+          component="h2"
           sx={{
             textAlign: 'center',
             fontWeight: 800,
