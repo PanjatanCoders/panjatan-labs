@@ -67,6 +67,28 @@ export default function Home() {
         description: 'Professional QA tools for modern testing teams. Get QA templates, test management software, and automation reporting tools.',
       },
       {
+        '@type': 'Book',
+        name: 'QA, Simplified',
+        description: 'A 24-page practical reality check for QA testers navigating real-world projects. Learn what QA is actually responsible for, common mistakes to avoid, and how confidence in QA is really built.',
+        author: {
+          '@type': 'Person',
+          name: 'Mohammad Saddam Hussain',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Panjatan Labs',
+        },
+        numberOfPages: '24',
+        bookFormat: 'https://schema.org/EBook',
+        offers: {
+          '@type': 'Offer',
+          url: 'https://panjatantech.gumroad.com/l/qasimplified',
+          priceCurrency: 'INR',
+          price: '0',
+          availability: 'https://schema.org/InStock',
+        },
+      },
+      {
         '@type': 'Product',
         name: 'QA Office-Ready Toolkit',
         description: 'A curated set of professional QA documents used in real projects — designed to help testers work confidently from Day 1.',

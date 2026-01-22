@@ -19,6 +19,9 @@ import {
   ShoppingCart,
   Schedule,
   LocalOffer,
+  CardGiftcard,
+  MenuBook,
+  Download,
 } from '@mui/icons-material'
 
 export default function ProductCard({ product }) {
@@ -29,10 +32,13 @@ export default function ProductCard({ product }) {
     status,
     link,
     linkText,
+    downloadLink,
+    downloadText,
     originalPrice,
     discountPrice,
     discount,
     features,
+    isFree,
   } = product
 
   return (
@@ -72,8 +78,26 @@ export default function ProductCard({ product }) {
         }}
       />
 
-      {/* Discount Badge */}
-      {discount && (
+      {/* Discount Badge or Free Badge */}
+      {isFree ? (
+        <Chip
+          icon={<CardGiftcard />}
+          label="FREE"
+          sx={{
+            position: 'absolute',
+            top: 16,
+            left: 16,
+            fontWeight: 700,
+            zIndex: 1,
+            backgroundColor: '#10b981',
+            color: 'white',
+            animation: 'pulse 2s infinite',
+            '& .MuiChip-icon': {
+              color: 'white',
+            },
+          }}
+        />
+      ) : discount ? (
         <Chip
           icon={<LocalOffer />}
           label={`${discount}% OFF`}
@@ -87,7 +111,7 @@ export default function ProductCard({ product }) {
             animation: 'pulse 2s infinite',
           }}
         />
-      )}
+      ) : null}
 
       <CardContent sx={{ flexGrow: 1, pt: 4, pb: 1.5, px: 2.5 }}>
         <Typography
@@ -129,47 +153,56 @@ export default function ProductCard({ product }) {
         </Typography>
 
         {/* Pricing */}
-        {originalPrice && (
-          <Box sx={{ mb: 1 }}>
-            <Stack direction="row" spacing={0.5} alignItems="center">
-              {discountPrice ? (
-                <>
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      fontWeight: 800,
-                      color: 'primary.main',
-                      fontSize: '1.75rem',
-                    }}
-                  >
-                    ₹{discountPrice}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      textDecoration: 'line-through',
-                      color: 'text.disabled',
-                      fontSize: '1rem',
-                    }}
-                  >
-                    ₹{originalPrice}
-                  </Typography>
-                </>
-              ) : (
+        <Box sx={{ mb: 1 }}>
+          <Stack direction="row" spacing={0.5} alignItems="center">
+            {isFree ? (
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: 800,
+                  color: '#10b981',
+                  fontSize: '1.75rem',
+                }}
+              >
+                FREE
+              </Typography>
+            ) : discountPrice ? (
+              <>
                 <Typography
                   variant="h4"
                   sx={{
                     fontWeight: 800,
-                    color: 'text.secondary',
+                    color: 'primary.main',
                     fontSize: '1.75rem',
+                  }}
+                >
+                  ₹{discountPrice}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    textDecoration: 'line-through',
+                    color: 'text.disabled',
+                    fontSize: '1rem',
                   }}
                 >
                   ₹{originalPrice}
                 </Typography>
-              )}
-            </Stack>
-          </Box>
-        )}
+              </>
+            ) : originalPrice ? (
+              <Typography
+                variant="h4"
+                sx={{
+                  fontWeight: 800,
+                  color: 'text.secondary',
+                  fontSize: '1.75rem',
+                }}
+              >
+                ₹{originalPrice}
+              </Typography>
+            ) : null}
+          </Stack>
+        </Box>
 
         <Divider sx={{ my: 1 }} />
 
@@ -195,26 +228,70 @@ export default function ProductCard({ product }) {
         )}
       </CardContent>
 
-      <CardActions sx={{ p: 2, pt: 0.5 }}>
-        {link ? (
+      <CardActions sx={{ p: 2, pt: 0.5, flexDirection: 'column', gap: 1 }}>
+        {downloadLink && (
           <Button
             className="product-button"
             variant="contained"
             fullWidth
             size="medium"
-            href={link}
+            href={downloadLink}
             target="_blank"
             rel="noopener noreferrer"
-            startIcon={<ShoppingCart />}
+            startIcon={<Download />}
             sx={{
               py: 1.2,
               fontWeight: 700,
               fontSize: '0.9rem',
               transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              background: 'linear-gradient(135deg, #0891b2 0%, #8b5cf6 100%)',
+              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
               '&:hover': {
-                background: 'linear-gradient(135deg, #0e7490 0%, #7c3aed 100%)',
+                background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+                transform: 'scale(1.02)',
+                boxShadow: '0 6px 20px rgba(16, 185, 129, 0.4)',
               },
+              '&:active': {
+                transform: 'scale(0.95)',
+              },
+            }}
+          >
+            {downloadText}
+          </Button>
+        )}
+        {link ? (
+          <Button
+            className={downloadLink ? '' : 'product-button'}
+            variant={downloadLink ? 'outlined' : 'contained'}
+            fullWidth
+            size="medium"
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            startIcon={isFree ? <MenuBook /> : <ShoppingCart />}
+            sx={{
+              py: 1.2,
+              fontWeight: 700,
+              fontSize: '0.9rem',
+              transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              ...(downloadLink
+                ? {
+                    borderColor: 'primary.main',
+                    color: 'primary.main',
+                    '&:hover': {
+                      borderColor: 'primary.dark',
+                      backgroundColor: 'rgba(8, 145, 178, 0.08)',
+                    },
+                  }
+                : {
+                    background: isFree
+                      ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+                      : 'linear-gradient(135deg, #0891b2 0%, #8b5cf6 100%)',
+                    '&:hover': {
+                      background: isFree
+                        ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                        : 'linear-gradient(135deg, #0e7490 0%, #7c3aed 100%)',
+                    },
+                  }),
               '&:active': {
                 transform: 'scale(0.95)',
               },
